@@ -116,7 +116,7 @@ extension DynamicSettings {
                 let threshold = Int(Double(7 * 288) * 0.85)
                 result = count >= threshold
             }
-
+            result = true
             return result
         }
     }
