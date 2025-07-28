@@ -102,21 +102,21 @@ extension DynamicSettings {
         /// - Returns: `true` if sufficient TDD data is available, otherwise `false`.
         /// - Throws: An error if the Core Data count operation fails.
         private func hasSufficientTDD() throws -> Bool {
-            var result = false
+            var result = true
 
-            context.performAndWait {
-                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TDDStored")
-                fetchRequest.predicate = NSPredicate(
-                    format: "date > %@ AND total > 0",
-                    Date().addingTimeInterval(-86400 * 7) as NSDate
-                )
-                fetchRequest.resultType = .countResultType
+           // context.performAndWait {
+            //    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TDDStored")
+           //     fetchRequest.predicate = NSPredicate(
+           //         format: "date > %@ AND total > 0",
+           //         Date().addingTimeInterval(-86400 * 7) as NSDate
+           //     )
+           //     fetchRequest.resultType = .countResultType
 
-                let count = (try? context.count(for: fetchRequest)) ?? 0
-                let threshold = Int(Double(7 * 288) * 0.85)
-                result = count >= threshold
-            }
-            result = true
+            //    let count = (try? context.count(for: fetchRequest)) ?? 0
+            //    let threshold = Int(Double(7 * 288) * 0.85)
+            //    result = count >= threshold
+            //}
+            //result = true
             return result
         }
     }
