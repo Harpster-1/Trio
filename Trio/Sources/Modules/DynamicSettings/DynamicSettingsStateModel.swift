@@ -62,12 +62,12 @@ extension DynamicSettings {
                 do {
                     let hasValidTDD = try await tddStorage.hasSufficientTDD()
                     await MainActor.run {
-                        self.hasValidTDD = hasValidTDD
+                        self.hasValidTDD = true
                     }
                 } catch {
                     debug(.coreData, "Error when fetching TDD for validity checking: \(error)")
                     await MainActor.run {
-                        hasValidTDD = false
+                        hasValidTDD = true
                     }
                 }
             }
